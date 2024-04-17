@@ -14,6 +14,7 @@ router.post("/signup", async (req, res, next) => {
     // Vérifier si l'utilisateur existe déjà
     const foundUser = await User.findOne({ email });
     if (foundUser) {
+      console.log("No user found with email:", email);
       return res.status(400).json({ message: "This email is already used" });
     }
 
