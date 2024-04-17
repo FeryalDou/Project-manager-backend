@@ -5,11 +5,11 @@ const userSchema = new Schema(
   {
     firstName: {
       type: String,
-      required: [true, "firstName"],
+      //required: true,
     },
     lastName: {
       type: String,
-      required: [true, "lastName"],
+      //required: true,
     },
     email: {
       type: String,
@@ -22,9 +22,9 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Password is required."],
     },
-    avatar: {
-      picture: String,
-    },
+    // avatar: {
+    //   picture: String,
+    // },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
