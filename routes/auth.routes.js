@@ -86,7 +86,7 @@ const SALT = 13;
 
 router.post("/signup", async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { firstName, lastName, email, password } = req.body;
 
     // Vérifier si l'utilisateur existe déjà
     const foundUser = await User.findOne({ email });
@@ -99,6 +99,8 @@ router.post("/signup", async (req, res, next) => {
 
     // Créer un nouvel utilisateur
     const createdUser = await User.create({
+      firstName,
+      lastName,
       email,
       password: hashedPassword,
     });
