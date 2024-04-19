@@ -10,7 +10,7 @@ const SALT = 13;
 router.post("/signup", async (req, res, next) => {
   try {
     const { firstName, lastName, email, password } = req.body;
-
+    console.log(firstName, lastName, email, password);
     // Vérifier si l'utilisateur existe déjà
     const foundUser = await User.findOne({ email });
     if (foundUser) {
@@ -43,6 +43,7 @@ router.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
 
     // Trouver l'utilisateur dans la base de données
+
     const foundUser = await User.findOne({ email }, { password: 1, email: 1 });
     if (!foundUser) {
       return res.status(400).json({ message: "Wrong credentials" });

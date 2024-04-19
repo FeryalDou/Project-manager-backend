@@ -1,38 +1,41 @@
 const express = require("express");
 const router = express.Router();
 const Project = require("../models/Project.model");
-
+const isAuthenticated = require("../middlewares/isAuthenticated");
 //create new project
 router.post("/", async (req, res, next) => {
   //console.log(coucou);
   try {
     const { name, description, startDate, endDate } = req.body;
-    const project = await Project.create({
+    const projects = await Project.create({
       name,
       description,
       startDate,
       endDate,
     });
-    res.status(201).json(project);
+    res.status(201).json(projects);
   } catch (error) {
     next(error);
   }
 });
 
 //Get all projects
-router.get("/", async (req, res, next) => {
+router.get("/", isAuthenticated, async (req, res, next) => {
   try {
-    const projects = await Project.find();
-    res.status(200).json(projects);
+    const project = await Project.find({ user: req.currentUserId });
+    res.status(200).json(project);
   } catch (error) {
     next(error);
   }
 });
 
 //get project by id
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", isAuthenticated, async (req, res, next) => {
   try {
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findOne({
+      _id: req.params.id,
+      user: req.currentUserId,
+    });
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
     }
