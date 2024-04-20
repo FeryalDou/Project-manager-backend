@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Project = require("../models/Project.model");
 const isAuthenticated = require("../middlewares/isAuthenticated");
+
 //create new project
-router.post("/", async (req, res, next) => {
-  //console.log(coucou);
+router.post("/", isAuthenticated, async (req, res, next) => {
   try {
     const { name, description, startDate, endDate } = req.body;
     const projects = await Project.create({
@@ -12,6 +12,7 @@ router.post("/", async (req, res, next) => {
       description,
       startDate,
       endDate,
+      user: req.currentUserId,
     });
     res.status(201).json(projects);
   } catch (error) {
@@ -46,11 +47,14 @@ router.get("/:id", isAuthenticated, async (req, res, next) => {
 });
 
 //update by id
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", isAuthenticated, async (req, res, next) => {
   try {
     const { name, description, startDate, endDate } = req.body;
     const project = await Project.findByIdAndUpdate(
-      req.params.id,
+      {
+        _id: req.params.id,
+        user: req.currentUserId, // Vérifie que le projet appartient à l'utilisateur actuel
+      },
       { name, description, startDate, endDate },
       { new: true }
     );
@@ -65,9 +69,12 @@ router.put("/:id", async (req, res, next) => {
 
 //delete by id
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", isAuthenticated, async (req, res, next) => {
   try {
-    const project = await Project.findByIdAndDelete(req.params.id);
+    const project = await Project.findOneAndDelete({
+      _id: req.params.id,
+      user: req.currentUserId,
+    });
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
     }

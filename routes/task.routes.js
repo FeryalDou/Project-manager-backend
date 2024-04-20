@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Task = require("../models/Task.model");
+const isAuthenticated = require("../middlewares/isAuthenticated");
 
 // Create a new task
-router.post("/", async (req, res, next) => {
+router.post("/", isAuthenticated, async (req, res, next) => {
   try {
     const { name, description, projectId } = req.body;
     const task = await Task.create({ name, description, projectId });
@@ -24,12 +25,17 @@ router.get("/", async (req, res, next) => {
 });
 
 // Get a task by ID
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", isAuthenticated, async (req, res, next) => {
   try {
-    const task = await Task.findById(req.params.id);
+    const task = await Task.findOne({
+      _id: req.params.id,
+      user: req.currentUserId,
+    }).populate("items");
+
     if (!task) {
       return res.status(404).json({ message: "Task not found" });
     }
+
     res.status(200).json(task);
   } catch (error) {
     next(error);
