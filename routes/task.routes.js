@@ -7,6 +7,12 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 router.post("/", isAuthenticated, async (req, res, next) => {
   try {
     const { name, description, projectId } = req.body;
+
+    if (!name || !projectId) {
+      return res
+        .status(400)
+        .json({ message: "Name and projectId are required" });
+    }
     const task = await Task.create({ name, description, projectId });
     res.status(201).json(task);
   } catch (error) {
