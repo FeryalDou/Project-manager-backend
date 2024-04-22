@@ -21,9 +21,9 @@ router.post("/", isAuthenticated, async (req, res, next) => {
 });
 
 // Get all tasks
-router.get("/", async (req, res, next) => {
+router.get("/", isAuthenticated, async (req, res, next) => {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find({ user: req.currentUserId });
     res.status(200).json(tasks);
   } catch (error) {
     next(error);
@@ -36,7 +36,7 @@ router.get("/:id", isAuthenticated, async (req, res, next) => {
     const task = await Task.findOne({
       _id: req.params.id,
       user: req.currentUserId,
-    }).populate("items");
+    });
 
     if (!task) {
       return res.status(404).json({ message: "Task not found" });
@@ -49,7 +49,7 @@ router.get("/:id", isAuthenticated, async (req, res, next) => {
 });
 
 // Update by ID
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", isAuthenticated, async (req, res, next) => {
   try {
     const { name, description, projectId } = req.body;
     const task = await Task.findByIdAndUpdate(
@@ -67,9 +67,12 @@ router.put("/:id", async (req, res, next) => {
 });
 
 // Delete by ID
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", isAuthenticated, async (req, res, next) => {
   try {
-    const task = await Task.findByIdAndDelete(req.params.id);
+    const task = await Task.findByIdAndDelete({
+      _id: req.params.id,
+      user: currentUserId,
+    });
     if (!task) {
       return res.status(404).json({ message: "Task not found" });
     }

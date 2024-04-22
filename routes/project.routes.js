@@ -50,10 +50,10 @@ router.get("/:id", isAuthenticated, async (req, res, next) => {
 router.put("/:id", isAuthenticated, async (req, res, next) => {
   try {
     const { name, description, startDate, endDate } = req.body;
-    const project = await Project.findByIdAndUpdate(
+    const project = await Project.findOneAndUpdate(
       {
         _id: req.params.id,
-        user: req.currentUserId, // Vérifie que le projet appartient à l'utilisateur actuel
+        user: req.currentUserId,
       },
       { name, description, startDate, endDate },
       { new: true }
