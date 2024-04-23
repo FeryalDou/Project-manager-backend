@@ -67,6 +67,165 @@ const tasks = [
     status: "todo",
     startDate: new Date(),
   },
+  {
+    title: "Set Up Database Backup Procedures",
+    description:
+      "Implement regular backup procedures for the database to ensure data integrity and availability",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Implement SSL Certificate",
+    description:
+      "Install and configure SSL certificate to enhance website security",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Configure Email Notifications",
+    description:
+      "Set up email notification system for user actions such as registration and password reset",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Optimize Landing Page Speed",
+    description:
+      "Optimize the load speed of the landing page to improve user experience and SEO rankings",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Develop User Authentication System",
+    description:
+      "Create a secure user authentication system that supports multi-factor authentication",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Create Content Management System",
+    description:
+      "Develop a custom content management system for easier content updates and management",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Upgrade Server Hardware",
+    description:
+      "Upgrade the server hardware to handle increased traffic and improve performance",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Integrate Third-party APIs",
+    description:
+      "Integrate external APIs to add functionality such as maps and payment services",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Perform Security Audit",
+    description:
+      "Conduct a comprehensive security audit to identify and rectify vulnerabilities",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Establish Disaster Recovery Plan",
+    description:
+      "Develop and document a disaster recovery strategy to minimize downtime in emergency situations",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Launch Marketing Campaign",
+    description:
+      "Prepare and launch a digital marketing campaign to promote the new application features",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Implement Data Encryption",
+    description:
+      "Encrypt sensitive data at rest and in transit to protect user information",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Setup Continuous Integration",
+    description:
+      "Set up a continuous integration pipeline to automate the testing and deployment of code changes",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Optimize Database Queries",
+    description:
+      "Review and optimize database queries to improve application performance",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Conduct User Acceptance Testing",
+    description:
+      "Carry out user acceptance testing to ensure the application meets business requirements and user expectations",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Update Privacy Policy",
+    description:
+      "Revise the privacy policy to comply with new regulations and ensure transparency",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Design Mobile Application",
+    description:
+      "Create a mobile version of the application to enhance accessibility and increase user engagement",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Refactor Legacy Code",
+    description:
+      "Refactor old, inefficient code to improve maintainability and performance",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Expand Product Catalogue",
+    description:
+      "Update and expand the online product catalogue with new items and categories",
+    status: "todo",
+    startDate: new Date(),
+  },
+
+  {
+    title: "Integrate Machine Learning Models",
+    description:
+      "Incorporate machine learning models to provide personalized recommendations and insights",
+    status: "todo",
+    startDate: new Date(),
+  },
 ];
 
 //insert data into collection
@@ -79,11 +238,11 @@ async function seed() {
       const randomId = Math.floor(Math.random() * user.length);
       task.user = user[randomId]._id;
     });
-    // const project = await Project.find();
-    // tasks.forEach((task) => {
-    //   const randomId = Math.floor(Math.random() * project.length);
-    //   task.project = project[randomId]._id;
-    // });
+    const projects = await Project.find();
+    tasks.forEach((task) => {
+      const randomId = Math.floor(Math.random() * projects.length);
+      task.project = projects[randomId]._id;
+    });
 
     const createdTask = await Task.create(tasks);
   } catch (error) {

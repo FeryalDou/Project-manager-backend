@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User.model.js");
 const isAuthenticated = require("../middlewares/isAuthenticated.js");
-//const fileUploader = require("../config/cloudinary-config.js");
 
 const SALT = 13;
 
@@ -15,6 +14,7 @@ router.post("/signup", async (req, res, next) => {
     const foundUser = await User.findOne({ email });
     if (foundUser) {
       console.log("No user found with email:", email);
+
       return res.status(400).json({ message: "This email is already used" });
     }
 
@@ -58,8 +58,9 @@ router.post("/login", async (req, res, next) => {
     // Générer le token JWT
     const token = jwt.sign({ id: foundUser._id }, process.env.TOKEN_SECRET, {
       algorithm: "HS256",
-      expiresIn: "1d",
+      expiresIn: "7d",
     });
+
     res.json({ authToken: token });
   } catch (error) {
     next(error);

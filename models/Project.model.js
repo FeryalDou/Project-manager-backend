@@ -16,12 +16,7 @@ const projectSchema = new Schema(
       type: String,
       trim: true,
     },
-    tasks: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Task",
-      },
-    ],
+
     startDate: {
       type: Date,
       default: Date.now,

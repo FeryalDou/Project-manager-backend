@@ -11,13 +11,12 @@ const taskSchema = new Schema(
       //required: [true, "Task title is required."],
       trim: true,
     },
-    projects: [
-      {
-        type: Schema.Types.ObjectId,
-        //required: true,
-        ref: "Project._id",
-      },
-    ],
+    project: {
+      type: Schema.Types.ObjectId,
+      //required: true,
+      ref: "Project",
+    },
+
     description: {
       type: String,
       trim: true,
