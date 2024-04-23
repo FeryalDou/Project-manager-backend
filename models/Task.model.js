@@ -6,14 +6,12 @@ const taskSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    title: {
+    name: {
       type: String,
-      //required: [true, "Task title is required."],
       trim: true,
     },
     project: {
       type: Schema.Types.ObjectId,
-      //required: true,
       ref: "Project",
     },
 
