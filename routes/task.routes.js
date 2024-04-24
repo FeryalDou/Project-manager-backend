@@ -6,14 +6,20 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 // Create a new task
 router.post("/", isAuthenticated, async (req, res, next) => {
   try {
-    const { name, description, projectId } = req.body;
+    const { name, description, project } = req.body;
+    console.log(name, project);
 
-    if (!name || !projectId) {
+    if (!name || !project) {
       return res
         .status(400)
         .json({ message: "Name and projectId are required" });
     }
-    const task = await Task.create({ name, description, projectId });
+    const task = await Task.create({
+      name,
+      description,
+      project,
+      user: req.currentUserId,
+    });
     res.status(201).json(task);
   } catch (error) {
     next(error);
@@ -33,8 +39,8 @@ router.get("/", isAuthenticated, async (req, res, next) => {
 // Get a task by ID
 router.get("/:id", isAuthenticated, async (req, res, next) => {
   try {
-    const task = await Task.findOne({
-      _id: req.params.id,
+    const task = await Task.find({
+      project: req.params.id,
       user: req.currentUserId,
     });
 

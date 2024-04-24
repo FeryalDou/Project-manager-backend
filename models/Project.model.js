@@ -25,6 +25,7 @@ const projectSchema = new Schema(
       type: Date,
     },
   },
+
   {
     timestamps: true,
   }

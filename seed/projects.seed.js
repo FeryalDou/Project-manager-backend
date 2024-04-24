@@ -7,6 +7,139 @@ const Task = require("../models/Task.model.js");
 // const Task=require("../seed/"
 const projects = [
   {
+    name: "Project Management Software",
+    description: "Developing software to plan, organize, and execute projects",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Team Collaboration Platform",
+    description:
+      "Building a platform to facilitate collaboration and communication among team members",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Productivity Enhancement Tool",
+    description:
+      "Creating a tool to enhance productivity and efficiency in the workplace",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Workflow Automation System",
+    description:
+      "Developing a system to automate repetitive tasks and streamline workflows",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Task Tracking Application",
+    description:
+      "Building an application to track and manage tasks across projects",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Knowledge Management Platform",
+    description:
+      "Creating a platform to centralize and organize knowledge within an organization",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Resource Allocation Software",
+    description:
+      "Developing software to allocate resources efficiently across projects",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Customer Support Ticketing System",
+    description:
+      "Building a system to manage customer support tickets and inquiries",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Sales Pipeline Management Tool",
+    description:
+      "Creating a tool to manage and track sales opportunities through the pipeline",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Training and Development Platform",
+    description:
+      "Developing a platform for employee training and professional development",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Bug Tracking System",
+    description:
+      "Building a system to track and manage software bugs and issues",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Feedback Collection App",
+    description:
+      "Creating an application to collect and analyze feedback from customers and stakeholders",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Quality Assurance Software",
+    description:
+      "Developing software to ensure the quality and reliability of products or services",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Data Analytics Dashboard",
+    description:
+      "Building a dashboard to visualize and analyze data for informed decision-making",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Marketing Campaign Management Tool",
+    description:
+      "Creating a tool to plan, execute, and analyze marketing campaigns",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Inventory Optimization System",
+    description:
+      "Developing a system to optimize inventory levels and reduce carrying costs",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Customer Relationship Portal",
+    description:
+      "Building a portal for customers to access account information, support, and resources",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Task Prioritization App",
+    description:
+      "Creating an application to help users prioritize tasks based on importance and urgency",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  {
+    name: "Document Collaboration Platform",
+    description:
+      "Developing a platform for real-time collaboration on documents and projects",
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+
+  {
     name: "planning work",
     description: "Creating a new platform for work organization",
     startDate: new Date(),
